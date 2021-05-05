@@ -162,6 +162,7 @@ __be16 eth_type_trans(struct sk_buff *skb, struct net_device *dev)
 	skb_reset_mac_header(skb);
 
 	eth = (struct ethhdr *)skb->data;
+	// move the skb-data to skip struct ethhdr header
 	skb_pull_inline(skb, ETH_HLEN);
 
 	if (unlikely(!ether_addr_equal_64bits(eth->h_dest,

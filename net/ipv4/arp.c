@@ -836,7 +836,7 @@ static int arp_process(struct net *net, struct sock *sk, struct sk_buff *skb)
 			}
 			goto out_consume_skb;
 		} else if (IN_DEV_FORWARD(in_dev)) {
-			if (addr_type == RTN_UNICAST  &&
+			if (addr_type == RTN_UNICAST &&
 			    (arp_fwd_proxy(in_dev, dev, rt) ||
 			     arp_fwd_pvlan(in_dev, dev, rt, sip, tip) ||
 			     (rt->dst.dev != dev &&

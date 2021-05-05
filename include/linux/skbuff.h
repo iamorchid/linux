@@ -950,6 +950,12 @@ static inline bool skb_pfmemalloc(const struct sk_buff *skb)
  * skb might have a dst pointer attached, refcounted or not.
  * _skb_refdst low order bit is set if refcount was _not_ taken
  */
+// skb->_skb_refdst may points to a dst but without obtaining
+// a reference on the dst (so just remember where the dst was 
+// once located). And the dst could be free'd when the skb tries 
+// using it again. And before skb uses the dst, it needs to 
+// check if _skb_refdst is marked as SKB_DST_NOREF and call 
+// dst_hold_safe to obtain a reference on the dst. --Will
 #define SKB_DST_NOREF	1UL
 #define SKB_DST_PTRMASK	~(SKB_DST_NOREF)
 

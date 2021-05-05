@@ -5309,6 +5309,7 @@ check_vlan_id:
 		__vlan_hwaccel_clear_tag(skb);
 	}
 
+	// L3 protocol (IP, ARP, IPV6, ...)
 	type = skb->protocol;
 
 	/* deliver only exact match when indicated */
